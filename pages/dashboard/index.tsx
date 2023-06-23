@@ -4,8 +4,9 @@ import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import { authProvider } from "src/authProvider";
 import { useList } from "@refinedev/core";
+
 import { DashboardTotalCard } from "src/pages/dashboard/cards";
-import { frappeDB } from "src/utility";
+import { frappeServerDB } from "src/utility";
 
 const TodosTotalCard = () => {
   const { data, isFetching, isError } = useList({
@@ -54,7 +55,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     };
   }
 
-  const itemCount = await frappeDB.getCount("Item");
+  const itemCount = await frappeServerDB.getCount("Item");
 
   return {
     props: {

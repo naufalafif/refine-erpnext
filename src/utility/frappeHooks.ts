@@ -1,3 +1,5 @@
+/* This Utilities is client base & does not work on server component */
+
 import { useEffect, useState } from "react";
 import { frappeDB } from "./frappeClient";
 import { Filter, GetDocListArgs } from "frappe-js-sdk/lib/db/types";

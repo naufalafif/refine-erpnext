@@ -1,7 +1,9 @@
 import { AuthBindings } from "@refinedev/core";
 import nookies from "nookies";
 
-import { supabaseClient } from "./utility";
+import { supabaseClient, frappeClient } from "./utility";
+
+const ENABLE_CLIENT_BASED_ERPNEXT = false;
 
 export const authProvider: AuthBindings = {
   login: async ({ email, password }) => {
@@ -15,6 +17,13 @@ export const authProvider: AuthBindings = {
         success: false,
         error,
       };
+    }
+
+    if (ENABLE_CLIENT_BASED_ERPNEXT) {
+      // required additional step to capture response cookie & set it with nookies.
+      await frappeClient
+        .auth()
+        .loginWithUsernamePassword({ username: email, password });
     }
 
     if (data?.session) {

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 import { authProvider } from "src/authProvider";
-import { frappeDB } from "src/utility";
+import { frappeServerDB } from "src/utility";
 
 export default function (props: any) {
   return (
@@ -54,7 +54,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     };
   }
 
-  const itemList = await frappeDB.getDocList("Item");
+  const itemList = await frappeServerDB.getDocList("Item");
 
   return {
     props: {
